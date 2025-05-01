@@ -1,17 +1,24 @@
-import {  Navbar, Transactor, Footer, Animate } from './components';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import AddProductPage from './pages/AddProductPage';
+import Footer from './components/Footer';
+import WelcomePage from './pages/WelcomePage';
+import BuyProductPage from './pages/BuyProductPage';
+import MyOrdersPage from './pages/MyOrdersPage';
 
 const App = () => {
   return (
-    <>
-      <Animate />
-      <div className="min-h-screen">
-        <div className="gradient-bg-welcome area" >
-          <Navbar/>
-          <Transactor/>
-      </div >
-      </div>
-    </>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/buy" element={<BuyProductPage />} />
+        <Route path="/add" element={<AddProductPage />} />
+        <Route path="/my-orders" element={<MyOrdersPage />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
-}
+};
 
-export default App
+export default App;

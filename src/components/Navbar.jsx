@@ -1,49 +1,28 @@
-import { Loader } from ".";
-import React, { useEffect, UseEffect, useState, UseState} from 'react';
-import { ethers } from 'ethers';
-
-import { contractABI, contractAddress } from '../utils/constants';
-
-export const MintContext = React.createContext();
-
-const { ethereum } = window;
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-
-    const [currentAccount , setCurrentAccount] = useState('');
-
-    const connectWallet = async () => {
-        try {
-            if(!ethereum) return alert("Please Install MetaMask");
-
-            const accounts = await ethereum.request({ method : 'eth_requestAccounts'});
-
-            setCurrentAccount(accounts[0]);
-        } catch (error) {
-            console.log(error);
-            
-            throw new Error("No Ethereum Object")
-        }
-
-    }
-
-    return(
-        <nav className="navbar w-full flex md:justify-center justify-between items-center p-4">
-        <div className="md:flex-[0.5] flex-initial justify-center items-center">
-            {/* <img src={eth} alt="logo" className="w-32 cursor-pointer}" /> */}
-            <h2 className="text-4xl">Dapp</h2>
-        </div>
-
-        <ul className="text-white md:flex hidden list-none flex-row justify-between items-center p-4">
-            <li className="">
-                {/* {!currentAccount && (<button type="button" onClick={connectWallet} className="flex flex-row justify-center items-center bg-[#6d0909] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#fffedc] hover:text-red-800">
-                        <p className="text-white text-base font-semibold">Connect Wallet</p>
-                    </button>)} */}
-            </li>
+  return (
+    <nav className="bg-gray-800 p-4 text-white">
+      <div className="container mx-auto flex items-center justify-between">
+        <h1 className="text-xl font-bold">eShop DApp</h1>
+        <ul className="flex space-x-4">
+          <li>
+            <Link to="/" className="hover:text-gray-300">Home</Link>
+          </li>
+          <li>
+            <Link to="/buy" className="hover:text-gray-300">Buy Product</Link>
+          </li>
+          <li>
+            <Link to="/add" className="hover:text-gray-300">Add Product</Link>
+          </li>
+          <li>
+            <Link to="/my-orders" className="hover:text-gray-300">My Orders"</Link>
+          </li>
         </ul>
+      </div>
     </nav>
-    )
-}
+  );
+};
 
 export default Navbar;
